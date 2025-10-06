@@ -31,13 +31,13 @@ python train/run_experiments.py \
     --csv data/8000/8000.csv \
     --data-root data/8000 \
     --output-root outputs/test_grid \
-    --num-workers 4 \
-    --per-device-eval-batch-size 8 \
-    --per-device-train-batch-size 8 \
+    --num-workers 2 \
+    --per-device-eval-batch-size 16 \
+    --per-device-train-batch-size 16 \
     --learning-rate 5e-5 \
     --num-train-epochs 2 \
     --eval-num-beams 3 \
-    --eval-batch-size 8 \
+    --eval-batch-size 16 \
     --max-train-samples 50 \
     --max-eval-samples 20 \
     --eval-max-samples 30 \
