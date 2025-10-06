@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+.venv_linux/
+
+# Data and outputs
+data/
+outputs/
+models/
+ALPR/
+
+# Logs
+*.log
+slurm_*.out
+slurm_*.err
+
+# Mac / misc
+.DS_Store
