@@ -226,6 +226,8 @@ def parse_args() -> argparse.Namespace:
         default=0,
         help="PyTorch DataLoader workers for train/eval (0 is Windows-safe; raise on Linux).",
     )
+    parser.add_argument("--eval-strategy", choices=["no", "steps", "epoch"], default="steps", help="Evaluation strategy.")
+    parser.add_argument("--save-strategy", choices=["no", "steps", "epoch"], default="steps", help="Save strategy.")
     parser.add_argument("--eval-normalize-text", action="store_true")
     parser.add_argument("--skip-existing", action="store_true", help="Skip training if output dir already has weights.")
     parser.add_argument("--dry-run", action="store_true", help="Print commands without executing them.")
@@ -283,6 +285,12 @@ def main() -> None:
         train_common.extend(["--data-root", root])
 
     train_common.extend(["--num-workers", str(args.num_workers)])
+    
+    # Add evaluation strategy arguments
+    if hasattr(args, 'eval_strategy') and args.eval_strategy:
+        train_common.extend(["--eval-strategy", args.eval_strategy])
+    if hasattr(args, 'save_strategy') and args.save_strategy:
+        train_common.extend(["--save-strategy", args.save_strategy])
 
     if args.max_train_samples is not None:
         train_common.extend(["--max-train-samples", str(args.max_train_samples)])

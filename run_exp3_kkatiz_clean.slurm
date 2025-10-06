@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=64G
-#SBATCH --time=1-12:00:00
+#SBATCH --time=0-04:00:00
 #SBATCH --output=slurm_exp3_kkatiz_clean_%j.out
 #SBATCH --error=slurm_exp3_kkatiz_clean_%j.err
 
@@ -30,7 +30,9 @@ python train/run_experiments.py \
     --per-device-eval-batch-size 48 \
     --per-device-train-batch-size 48 \
     --learning-rate 3e-5 \
-    --num-train-epochs 3 \
+    --num-train-epochs 6 \
+    --eval-strategy epoch \
+    --save-strategy epoch \
     --eval-num-beams 3 \
     --eval-batch-size 48 \
     --continue-on-error \
