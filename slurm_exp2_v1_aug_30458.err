@@ -1,0 +1,36 @@
+2025-10-06 23:28:12,111 - INFO - train_trocr - Loading records from data/8000/8000.csv
+2025-10-06 23:28:18,111 - INFO - train.data_utils - Loaded 8172 records (require_validate=True, drop_missing=True)
+2025-10-06 23:28:18,111 - INFO - train_trocr - Creating stratified splits (train=0.70, val=0.20, test=0.10)
+2025-10-06 23:28:18,118 - INFO - train.data_utils - Split 'train': 5589 samples
+2025-10-06 23:28:18,118 - INFO - train.data_utils - Split 'val': 1536 samples
+2025-10-06 23:28:18,118 - INFO - train.data_utils - Split 'test': 1047 samples
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+2025-10-06 23:28:21,781 - INFO - train_trocr - Added 77 province tokens to tokenizer
+2025-10-06 23:28:21,782 - INFO - train_trocr - Loading openthaigpt/thai-trocr and applying state_dict from models/weights/charactor_reader.pth
+/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py:713: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(source_path, map_location="cpu")
+2025-10-06 23:28:24,325 - INFO - train_trocr - Vocab size mismatch: state_dict=25005, current_model=25005, required=25082
+2025-10-06 23:28:25,536 - INFO - train_trocr - Resizing model decoder embeddings from 25005 to 25082 tokens after partial state_dict load
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+2025-10-06 23:28:25,645 - INFO - train_trocr - Copying 25005 original embeddings to resized model
+2025-10-06 23:28:25,662 - INFO - train_trocr - Resized decoder embeddings to 25082 tokens
+/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/cuda/__init__.py:129: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 802: system not yet initialized (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py:1153: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `VisionSeq2SeqTrainer.__init__`. Use `processing_class` instead.
+  trainer = VisionSeq2SeqTrainer(
+2025-10-06 23:28:25,797 - INFO - train_trocr - Starting training: 5589 train samples, 1536 val samples
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': 5}.
+  0%|          | 0/702 [00:00<?, ?it/s]2025-10-06 23:28:49,631 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+`loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+  0%|          | 1/702 [01:40<19:34:54, 100.56s/it]2025-10-06 23:30:06,555 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  0%|          | 2/702 [02:39<14:47:17, 76.05s/it] 2025-10-06 23:31:05,455 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  0%|          | 3/702 [03:36<13:02:32, 67.17s/it]2025-10-06 23:32:02,053 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 4/702 [04:35<12:26:02, 64.13s/it]2025-10-06 23:33:01,524 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 5/702 [05:28<11:40:05, 60.27s/it]2025-10-06 23:33:54,934 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 6/702 [06:29<11:41:01, 60.43s/it]2025-10-06 23:34:55,693 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 7/702 [07:25<11:20:51, 58.78s/it]2025-10-06 23:35:51,068 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 8/702 [08:20<11:05:58, 57.58s/it]2025-10-06 23:36:46,069 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|▏         | 9/702 [09:16<11:00:55, 57.22s/it]2025-10-06 23:37:42,515 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|▏         | 10/702 [10:17<11:12:13, 58.29s/it]2025-10-06 23:38:43,180 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 11/702 [11:13<11:04:33, 57.70s/it]2025-10-06 23:39:39,564 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+slurmstepd: error: *** JOB 30458 ON prism-1 CANCELLED AT 2025-10-06T23:39:48 ***

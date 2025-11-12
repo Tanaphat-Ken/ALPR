@@ -1,0 +1,57 @@
+GPU Information for exp1_v1_clean:
+Tue Oct  7 00:23:26 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  | 00000000:4E:00.0 Off |                    0 |
+| N/A   25C    P0              57W / 400W |      3MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+CUDA_VISIBLE_DEVICES: 0
+Starting exp1_v1_clean at Tue Oct  7 12:23:27 AM +07 2025
+{'loss': 17.446, 'grad_norm': 80.3587417602539, 'learning_rate': 1.14e-06, 'epoch': 0.17}
+{'loss': 13.538, 'grad_norm': 50.39481735229492, 'learning_rate': 2.34e-06, 'epoch': 0.34}
+{'loss': 9.1586, 'grad_norm': 12.813578605651855, 'learning_rate': 3.54e-06, 'epoch': 0.51}
+{'loss': 7.5944, 'grad_norm': 8.640731811523438, 'learning_rate': 4.74e-06, 'epoch': 0.68}
+{'loss': 6.7943, 'grad_norm': 7.385058879852295, 'learning_rate': 5.940000000000001e-06, 'epoch': 0.85}
+{'eval_loss': 5.762668132781982, 'eval_cer': 1.0066716269841272, 'eval_exact_match': 0.0, 'eval_plate_cer': 1.0066716269841272, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 40.3108, 'eval_samples_per_second': 38.104, 'eval_steps_per_second': 0.794, 'epoch': 1.0}
+{'loss': 6.1314, 'grad_norm': 6.281493186950684, 'learning_rate': 7.14e-06, 'epoch': 1.03}
+{'loss': 5.7676, 'grad_norm': 6.253932476043701, 'learning_rate': 8.340000000000001e-06, 'epoch': 1.2}
+{'loss': 5.518, 'grad_norm': 5.903435230255127, 'learning_rate': 9.54e-06, 'epoch': 1.37}
+{'loss': 5.4401, 'grad_norm': 6.655078411102295, 'learning_rate': 1.074e-05, 'epoch': 1.54}
+{'loss': 5.3283, 'grad_norm': 5.58066987991333, 'learning_rate': 1.1940000000000001e-05, 'epoch': 1.71}
+{'loss': 5.2203, 'grad_norm': 5.86137056350708, 'learning_rate': 1.314e-05, 'epoch': 1.88}
+{'eval_loss': 5.072401523590088, 'eval_cer': 3.7229864211309494, 'eval_exact_match': 0.0, 'eval_plate_cer': 3.7229864211309494, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 36.6742, 'eval_samples_per_second': 41.882, 'eval_steps_per_second': 0.873, 'epoch': 2.0}
+{'loss': 5.206, 'grad_norm': 5.338042259216309, 'learning_rate': 1.434e-05, 'epoch': 2.05}
+{'loss': 5.1133, 'grad_norm': 6.314082622528076, 'learning_rate': 1.554e-05, 'epoch': 2.22}
+{'loss': 5.0593, 'grad_norm': 5.761972427368164, 'learning_rate': 1.6740000000000002e-05, 'epoch': 2.39}
+{'loss': 4.9063, 'grad_norm': 5.899154186248779, 'learning_rate': 1.794e-05, 'epoch': 2.56}
+{'loss': 4.8444, 'grad_norm': 5.851208686828613, 'learning_rate': 1.914e-05, 'epoch': 2.74}
+{'loss': 4.7594, 'grad_norm': 6.166858196258545, 'learning_rate': 2.0340000000000002e-05, 'epoch': 2.91}
+{'eval_loss': 4.543843746185303, 'eval_cer': 3.566886780753967, 'eval_exact_match': 0.0, 'eval_plate_cer': 3.566886780753967, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 37.6498, 'eval_samples_per_second': 40.797, 'eval_steps_per_second': 0.85, 'epoch': 3.0}
+{'loss': 4.6405, 'grad_norm': 6.718059539794922, 'learning_rate': 2.154e-05, 'epoch': 3.08}
+{'loss': 4.4672, 'grad_norm': 7.327937602996826, 'learning_rate': 2.274e-05, 'epoch': 3.25}
+{'loss': 4.3365, 'grad_norm': 7.543267726898193, 'learning_rate': 2.394e-05, 'epoch': 3.42}
+{'loss': 4.1763, 'grad_norm': 7.729178428649902, 'learning_rate': 2.514e-05, 'epoch': 3.59}
+{'loss': 4.0309, 'grad_norm': 7.409046173095703, 'learning_rate': 2.6340000000000002e-05, 'epoch': 3.76}
+{'loss': 3.8618, 'grad_norm': 8.14950942993164, 'learning_rate': 2.754e-05, 'epoch': 3.93}
+{'eval_loss': 3.5798263549804688, 'eval_cer': 3.0831380208333283, 'eval_exact_match': 0.0, 'eval_plate_cer': 3.0831380208333283, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 36.8313, 'eval_samples_per_second': 41.704, 'eval_steps_per_second': 0.869, 'epoch': 4.0}
+{'loss': 3.6219, 'grad_norm': 7.964095592498779, 'learning_rate': 2.874e-05, 'epoch': 4.1}
+{'loss': 3.4548, 'grad_norm': 8.038164138793945, 'learning_rate': 2.994e-05, 'epoch': 4.27}
+{'loss': 3.3232, 'grad_norm': 7.630887985229492, 'learning_rate': 2.717821782178218e-05, 'epoch': 4.44}
+{'loss': 3.1577, 'grad_norm': 7.455502510070801, 'learning_rate': 2.420792079207921e-05, 'epoch': 4.62}
+{'loss': 3.0428, 'grad_norm': 7.065674781799316, 'learning_rate': 2.1237623762376237e-05, 'epoch': 4.79}
+{'loss': 2.9679, 'grad_norm': 6.44359016418457, 'learning_rate': 1.826732673267327e-05, 'epoch': 4.96}
+{'eval_loss': 2.856381416320801, 'eval_cer': 2.5176680307539674, 'eval_exact_match': 0.0, 'eval_plate_cer': 2.5176680307539674, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 37.5468, 'eval_samples_per_second': 40.909, 'eval_steps_per_second': 0.852, 'epoch': 5.0}

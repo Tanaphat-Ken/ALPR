@@ -1,0 +1,9 @@
+Starting checkpoint evaluation at Tue Oct  7 04:09:27 PM +07 2025
+Job ID: 30559
+GPU: 0
+Evaluating experiment: outputs/grid/exp1_v1_clean
+Python 3.10.12
+PyTorch: 2.5.1+cu121, CUDA: False
+Transformers: 4.57.0
+=== Running checkpoint evaluation ===
+=== Checkpoint evaluation completed at Tue Oct  7 05:50:41 PM +07 2025 ===

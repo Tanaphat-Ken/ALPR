@@ -1,0 +1,113 @@
+usage: train_trocr.py [-h] --csv CSV --data-root DATA_ROOT
+                      [--model-id MODEL_ID] [--model-path MODEL_PATH]
+                      [--output-dir OUTPUT_DIR] [--train-ratio TRAIN_RATIO]
+                      [--val-ratio VAL_RATIO] [--test-ratio TEST_RATIO]
+                      [--seed SEED]
+                      [--per-device-train-batch-size PER_DEVICE_TRAIN_BATCH_SIZE]
+                      [--per-device-eval-batch-size PER_DEVICE_EVAL_BATCH_SIZE]
+                      [--gradient-accumulation-steps GRADIENT_ACCUMULATION_STEPS]
+                      [--learning-rate LEARNING_RATE]
+                      [--num-train-epochs NUM_TRAIN_EPOCHS]
+                      [--warmup-steps WARMUP_STEPS]
+                      [--weight-decay WEIGHT_DECAY]
+                      [--max-train-samples MAX_TRAIN_SAMPLES]
+                      [--max-eval-samples MAX_EVAL_SAMPLES]
+                      [--augment {none,light,medium,heavy,baseline,mod,strong}]
+                      [--freeze-encoder] [--decoder-only] [--use-lora]
+                      [--lora-rank LORA_RANK] [--lora-alpha LORA_ALPHA]
+                      [--lora-dropout LORA_DROPOUT]
+                      [--lora-target-modules LORA_TARGET_MODULES]
+                      [--lora-scope {decoder,encoder,all}] [--fp16] [--bf16]
+                      [--eval-steps EVAL_STEPS] [--save-steps SAVE_STEPS]
+                      [--eval-strategy {no,steps,epoch}]
+                      [--save-strategy {no,steps,epoch}]
+                      [--logging-steps LOGGING_STEPS]
+                      [--report-to [REPORT_TO ...]]
+                      [--generation-max-length GENERATION_MAX_LENGTH]
+                      [--push-to-hub]
+                      [--resume-from-checkpoint RESUME_FROM_CHECKPOINT]
+                      [--manifest-dir MANIFEST_DIR] [--only-eval]
+                      [--num-workers NUM_WORKERS] [--device DEVICE]
+                      [--predict-province] [--province-format {code,name}]
+train_trocr.py: error: unrecognized arguments: --warmup-ratio 0.15 --save-total-limit 3 --dataloader-num-workers 0 --load-best-model-at-end true --metric-for-best-model eval_cer --greater-is-better false --early-stopping-patience 3 false
+2025-10-07 01:35:19,022 - INFO - train.data_utils - Loaded 8172 records (require_validate=True, drop_missing=True)
+2025-10-07 01:35:19,029 - INFO - train.data_utils - Split 'train': 5589 samples
+2025-10-07 01:35:19,029 - INFO - train.data_utils - Split 'val': 1121 samples
+2025-10-07 01:35:19,029 - INFO - train.data_utils - Split 'test': 1462 samples
+2025-10-07 01:35:19,029 - INFO - eval_trocr - Selected 1462 samples from test split
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+2025-10-07 01:35:21,929 - INFO - train_trocr - Loading openthaigpt/thai-trocr and applying state_dict from outputs/plate_high_quality
+/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py:713: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(source_path, map_location="cpu")
+Traceback (most recent call last):
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 305, in <module>
+    main()
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 300, in main
+    metrics = evaluate(args)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 151, in evaluate
+    model, processor, device = prepare_model(args)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 134, in prepare_model
+    model, processor = load_model_and_processor(ns)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py", line 713, in load_model_and_processor
+    state = torch.load(source_path, map_location="cpu")
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 1319, in load
+    with _open_file_like(f, "rb") as opened_file:
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 659, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 640, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'outputs/plate_high_quality'
+2025-10-07 01:35:32,405 - INFO - train.data_utils - Loaded 8172 records (require_validate=True, drop_missing=True)
+2025-10-07 01:35:32,411 - INFO - train.data_utils - Split 'train': 5589 samples
+2025-10-07 01:35:32,412 - INFO - train.data_utils - Split 'val': 1121 samples
+2025-10-07 01:35:32,412 - INFO - train.data_utils - Split 'test': 1462 samples
+2025-10-07 01:35:32,412 - INFO - eval_trocr - Selected 1462 samples from test split
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+2025-10-07 01:35:35,661 - INFO - train_trocr - Loading openthaigpt/thai-trocr and applying state_dict from outputs/plate_high_quality
+/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py:713: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(source_path, map_location="cpu")
+Traceback (most recent call last):
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 305, in <module>
+    main()
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 300, in main
+    metrics = evaluate(args)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 151, in evaluate
+    model, processor, device = prepare_model(args)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 134, in prepare_model
+    model, processor = load_model_and_processor(ns)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py", line 713, in load_model_and_processor
+    state = torch.load(source_path, map_location="cpu")
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 1319, in load
+    with _open_file_like(f, "rb") as opened_file:
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 659, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 640, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'outputs/plate_high_quality'
+2025-10-07 01:35:46,130 - INFO - train.data_utils - Loaded 8172 records (require_validate=True, drop_missing=True)
+2025-10-07 01:35:46,137 - INFO - train.data_utils - Split 'train': 5589 samples
+2025-10-07 01:35:46,137 - INFO - train.data_utils - Split 'val': 1121 samples
+2025-10-07 01:35:46,137 - INFO - train.data_utils - Split 'test': 1462 samples
+2025-10-07 01:35:46,137 - INFO - eval_trocr - Selected 1462 samples from test split
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+2025-10-07 01:35:48,964 - INFO - train_trocr - Loading openthaigpt/thai-trocr and applying state_dict from outputs/plate_high_quality
+/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py:713: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(source_path, map_location="cpu")
+Traceback (most recent call last):
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 305, in <module>
+    main()
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 300, in main
+    metrics = evaluate(args)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 151, in evaluate
+    model, processor, device = prepare_model(args)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py", line 134, in prepare_model
+    model, processor = load_model_and_processor(ns)
+  File "/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py", line 713, in load_model_and_processor
+    state = torch.load(source_path, map_location="cpu")
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 1319, in load
+    with _open_file_like(f, "rb") as opened_file:
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 659, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/serialization.py", line 640, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'outputs/plate_high_quality'

@@ -1,0 +1,10 @@
+Starting plate-only improved training at Tue Oct  7 01:31:27 AM +07 2025
+Job ID: 30499
+GPU: 0
+Python 3.10.12
+PyTorch: 2.5.1+cu121
+Transformers: 4.57.0
+=== Running PLATE-ONLY training (no province prediction) ===
+=== Training completed at Tue Oct  7 01:32:51 AM +07 2025 ===
+=== Running evaluation on test set ===
+=== All completed at Tue Oct  7 01:34:36 AM +07 2025 ===

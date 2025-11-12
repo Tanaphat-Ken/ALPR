@@ -1,0 +1,13 @@
+Starting high-quality plate training at Tue Oct  7 01:34:57 AM +07 2025
+Job ID: 30500
+GPU: 0
+Python 3.10.12
+PyTorch: 2.5.1+cu121, CUDA: True
+Transformers: 4.57.0
+=== Running HIGH-QUALITY plate training (optimized for low CER) ===
+=== High-quality training completed at Tue Oct  7 01:35:10 AM +07 2025 ===
+=== Running comprehensive evaluation ===
+Evaluating with num_beams=1
+Evaluating with num_beams=3
+Evaluating with num_beams=5
+=== All evaluations completed at Tue Oct  7 01:35:51 AM +07 2025 ===

@@ -1,0 +1,26 @@
+/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/cuda/__init__.py:129: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 802: system not yet initialized (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+2025-10-07 16:09:38,842 - INFO - Found 6 checkpoints
+/home/tsomboo/ALPR/plate_recognizer/train/eval_checkpoints.py:70: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  training_args = torch.load(training_args_file, map_location="cpu")
+2025-10-07 16:09:42,242 - INFO - Loaded training arguments from training_args.bin
+2025-10-07 16:09:42,243 - INFO - Evaluating checkpoint: checkpoint-117
+2025-10-07 16:09:42,244 - INFO - Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --model-path outputs/grid/exp1_v1_clean/checkpoint-117 --split test --num-beams 4 --batch-size 8 --csv data/8000/8000.csv --data-root data/8000 --save-results outputs/grid/exp1_v1_clean/checkpoint-117/eval_test.json
+2025-10-07 16:30:41,503 - INFO - ✓ Successfully evaluated checkpoint-117
+2025-10-07 16:30:41,505 - INFO - Evaluating checkpoint: checkpoint-234
+2025-10-07 16:30:41,505 - INFO - Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --model-path outputs/grid/exp1_v1_clean/checkpoint-234 --split test --num-beams 4 --batch-size 8 --csv data/8000/8000.csv --data-root data/8000 --save-results outputs/grid/exp1_v1_clean/checkpoint-234/eval_test.json
+2025-10-07 16:50:11,252 - INFO - ✓ Successfully evaluated checkpoint-234
+2025-10-07 16:50:11,253 - INFO - Evaluating checkpoint: checkpoint-351
+2025-10-07 16:50:11,253 - INFO - Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --model-path outputs/grid/exp1_v1_clean/checkpoint-351 --split test --num-beams 4 --batch-size 8 --csv data/8000/8000.csv --data-root data/8000 --save-results outputs/grid/exp1_v1_clean/checkpoint-351/eval_test.json
+2025-10-07 17:06:42,561 - INFO - ✓ Successfully evaluated checkpoint-351
+2025-10-07 17:06:42,561 - INFO - Evaluating checkpoint: checkpoint-468
+2025-10-07 17:06:42,562 - INFO - Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --model-path outputs/grid/exp1_v1_clean/checkpoint-468 --split test --num-beams 4 --batch-size 8 --csv data/8000/8000.csv --data-root data/8000 --save-results outputs/grid/exp1_v1_clean/checkpoint-468/eval_test.json
+2025-10-07 17:22:08,128 - INFO - ✓ Successfully evaluated checkpoint-468
+2025-10-07 17:22:08,131 - INFO - Evaluating checkpoint: checkpoint-585
+2025-10-07 17:22:08,132 - INFO - Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --model-path outputs/grid/exp1_v1_clean/checkpoint-585 --split test --num-beams 4 --batch-size 8 --csv data/8000/8000.csv --data-root data/8000 --save-results outputs/grid/exp1_v1_clean/checkpoint-585/eval_test.json
+2025-10-07 17:36:26,147 - INFO - ✓ Successfully evaluated checkpoint-585
+2025-10-07 17:36:26,148 - INFO - Evaluating checkpoint: checkpoint-702
+2025-10-07 17:36:26,148 - INFO - Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --model-path outputs/grid/exp1_v1_clean/checkpoint-702 --split test --num-beams 4 --batch-size 8 --csv data/8000/8000.csv --data-root data/8000 --save-results outputs/grid/exp1_v1_clean/checkpoint-702/eval_test.json
+2025-10-07 17:50:41,293 - INFO - ✓ Successfully evaluated checkpoint-702
+2025-10-07 17:50:41,294 - INFO - Evaluation complete: 6 successful, 0 failed
+2025-10-07 17:50:41,331 - INFO - Saved evaluation summary to outputs/grid/exp1_v1_clean/checkpoint_evaluations_test.json

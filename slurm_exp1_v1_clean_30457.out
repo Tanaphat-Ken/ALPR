@@ -1,0 +1,86 @@
+GPU Information for exp1_v1_clean:
+Mon Oct  6 23:24:57 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  | 00000000:0F:00.0 Off |                    0 |
+| N/A   26C    P0              54W / 400W |      3MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+CUDA_VISIBLE_DEVICES: 0
+Starting exp1_v1_clean at Mon Oct  6 11:24:58 PM +07 2025
+{'loss': 17.446, 'grad_norm': 80.3587417602539, 'learning_rate': 1.14e-06, 'epoch': 0.17}
+{'loss': 13.538, 'grad_norm': 50.39481735229492, 'learning_rate': 2.34e-06, 'epoch': 0.34}
+{'loss': 9.1586, 'grad_norm': 12.813578605651855, 'learning_rate': 3.54e-06, 'epoch': 0.51}
+{'loss': 7.5944, 'grad_norm': 8.640732765197754, 'learning_rate': 4.74e-06, 'epoch': 0.68}
+{'loss': 6.7943, 'grad_norm': 7.385059356689453, 'learning_rate': 5.940000000000001e-06, 'epoch': 0.85}
+{'eval_loss': 5.762668132781982, 'eval_cer': 1.0066716269841272, 'eval_exact_match': 0.0, 'eval_plate_cer': 1.0066716269841272, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 40.8399, 'eval_samples_per_second': 37.61, 'eval_steps_per_second': 0.784, 'epoch': 1.0}
+{'loss': 6.1314, 'grad_norm': 6.281494617462158, 'learning_rate': 7.14e-06, 'epoch': 1.03}
+{'loss': 5.7676, 'grad_norm': 6.253929138183594, 'learning_rate': 8.340000000000001e-06, 'epoch': 1.2}
+{'loss': 5.518, 'grad_norm': 5.903435707092285, 'learning_rate': 9.54e-06, 'epoch': 1.37}
+{'loss': 5.4401, 'grad_norm': 6.655074596405029, 'learning_rate': 1.074e-05, 'epoch': 1.54}
+{'loss': 5.3283, 'grad_norm': 5.580667018890381, 'learning_rate': 1.1940000000000001e-05, 'epoch': 1.71}
+{'loss': 5.2203, 'grad_norm': 5.861373424530029, 'learning_rate': 1.314e-05, 'epoch': 1.88}
+{'eval_loss': 5.072401523590088, 'eval_cer': 3.7229864211309494, 'eval_exact_match': 0.0, 'eval_plate_cer': 3.7229864211309494, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 36.998, 'eval_samples_per_second': 41.516, 'eval_steps_per_second': 0.865, 'epoch': 2.0}
+{'loss': 5.206, 'grad_norm': 5.3380446434021, 'learning_rate': 1.434e-05, 'epoch': 2.05}
+{'loss': 5.1133, 'grad_norm': 6.314080715179443, 'learning_rate': 1.554e-05, 'epoch': 2.22}
+{'loss': 5.0593, 'grad_norm': 5.761972904205322, 'learning_rate': 1.6740000000000002e-05, 'epoch': 2.39}
+{'loss': 4.9063, 'grad_norm': 5.8991522789001465, 'learning_rate': 1.794e-05, 'epoch': 2.56}
+{'loss': 4.8444, 'grad_norm': 5.851208686828613, 'learning_rate': 1.914e-05, 'epoch': 2.74}
+{'loss': 4.7594, 'grad_norm': 6.166860103607178, 'learning_rate': 2.0340000000000002e-05, 'epoch': 2.91}
+{'eval_loss': 4.543843746185303, 'eval_cer': 3.566886780753967, 'eval_exact_match': 0.0, 'eval_plate_cer': 3.566886780753967, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 37.5442, 'eval_samples_per_second': 40.912, 'eval_steps_per_second': 0.852, 'epoch': 3.0}
+{'loss': 4.6405, 'grad_norm': 6.7180585861206055, 'learning_rate': 2.154e-05, 'epoch': 3.08}
+{'loss': 4.4672, 'grad_norm': 7.327940464019775, 'learning_rate': 2.274e-05, 'epoch': 3.25}
+{'loss': 4.3365, 'grad_norm': 7.543271541595459, 'learning_rate': 2.394e-05, 'epoch': 3.42}
+{'loss': 4.1763, 'grad_norm': 7.729183197021484, 'learning_rate': 2.514e-05, 'epoch': 3.59}
+{'loss': 4.0309, 'grad_norm': 7.4090471267700195, 'learning_rate': 2.6340000000000002e-05, 'epoch': 3.76}
+{'loss': 3.8618, 'grad_norm': 8.14950942993164, 'learning_rate': 2.754e-05, 'epoch': 3.93}
+{'eval_loss': 3.5798263549804688, 'eval_cer': 3.0831380208333283, 'eval_exact_match': 0.0, 'eval_plate_cer': 3.0831380208333283, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 36.8932, 'eval_samples_per_second': 41.634, 'eval_steps_per_second': 0.867, 'epoch': 4.0}
+{'loss': 3.6219, 'grad_norm': 7.964096546173096, 'learning_rate': 2.874e-05, 'epoch': 4.1}
+{'loss': 3.4548, 'grad_norm': 8.038166046142578, 'learning_rate': 2.994e-05, 'epoch': 4.27}
+{'loss': 3.3232, 'grad_norm': 7.630881309509277, 'learning_rate': 2.717821782178218e-05, 'epoch': 4.44}
+{'loss': 3.1577, 'grad_norm': 7.455496311187744, 'learning_rate': 2.420792079207921e-05, 'epoch': 4.62}
+{'loss': 3.0428, 'grad_norm': 7.065673828125, 'learning_rate': 2.1237623762376237e-05, 'epoch': 4.79}
+{'loss': 2.9679, 'grad_norm': 6.443592548370361, 'learning_rate': 1.826732673267327e-05, 'epoch': 4.96}
+{'eval_loss': 2.856381416320801, 'eval_cer': 2.5176680307539674, 'eval_exact_match': 0.0, 'eval_plate_cer': 2.5176680307539674, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.00390625, 'eval_province_exact_match': 0.99609375, 'eval_runtime': 37.1774, 'eval_samples_per_second': 41.315, 'eval_steps_per_second': 0.861, 'epoch': 5.0}
+{'loss': 2.8552, 'grad_norm': 5.81022834777832, 'learning_rate': 1.5297029702970297e-05, 'epoch': 5.13}
+{'loss': 2.7905, 'grad_norm': 5.35959529876709, 'learning_rate': 1.2326732673267326e-05, 'epoch': 5.3}
+{'loss': 2.759, 'grad_norm': 5.6208977699279785, 'learning_rate': 9.356435643564357e-06, 'epoch': 5.47}
+{'loss': 2.714, 'grad_norm': 5.072414398193359, 'learning_rate': 6.386138613861386e-06, 'epoch': 5.64}
+{'loss': 2.694, 'grad_norm': 4.836416244506836, 'learning_rate': 3.415841584158416e-06, 'epoch': 5.81}
+{'loss': 2.6803, 'grad_norm': 5.193836688995361, 'learning_rate': 4.4554455445544555e-07, 'epoch': 5.98}
+{'eval_loss': 2.7105350494384766, 'eval_cer': 2.4660404265873046, 'eval_exact_match': 0.0, 'eval_plate_cer': 2.4660404265873046, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 0.2760416666666667, 'eval_province_exact_match': 0.9811197916666666, 'eval_runtime': 36.8449, 'eval_samples_per_second': 41.688, 'eval_steps_per_second': 0.869, 'epoch': 6.0}
+{'train_runtime': 1294.6371, 'train_samples_per_second': 25.902, 'train_steps_per_second': 0.542, 'train_loss': 5.118673553493967, 'epoch': 6.0}
+{
+  "samples": 1462,
+  "cer": 0.8397068972820584,
+  "exact_match": 0.0,
+  "latency_ms": 19.74507674057032,
+  "throughput_ips": 50.68452983977478,
+  "plate_cer": 0.8863534948863266,
+  "plate_exact_match": 0.0,
+  "province_cer": 1.0638850889192886,
+  "province_exact_match": 0.0
+}
+
+=== Experiment: exp1_v1_clean ===
+V1 (.pth) baseline continuation with clean data + full fine-tuning + province prediction
+
+==> Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py --csv data/8000/8000.csv --num-train-epochs 6 --per-device-train-batch-size 48 --per-device-eval-batch-size 48 --learning-rate 3e-05 --data-root data/8000 --num-workers 4 --eval-strategy epoch --save-strategy epoch --output-dir /home/tsomboo/ALPR/plate_recognizer/outputs/grid/exp1_v1_clean --model-id openthaigpt/thai-trocr --model-path models/weights/charactor_reader.pth --augment none --predict-province --province-format code
+
+==> Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --csv data/8000/8000.csv --data-root data/8000 --num-beams 3 --batch-size 48 --model-path /home/tsomboo/ALPR/plate_recognizer/outputs/grid/exp1_v1_clean --model-id openthaigpt/thai-trocr --split test --predict-province --province-format code --save-results /home/tsomboo/ALPR/plate_recognizer/outputs/grid/exp1_v1_clean/eval_test.json
+
+All requested experiments processed.
+exp1_v1_clean completed at Mon Oct  6 11:52:50 PM +07 2025

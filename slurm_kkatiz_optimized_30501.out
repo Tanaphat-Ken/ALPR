@@ -1,0 +1,7 @@
+Starting optimized kkatiz training at Tue Oct  7 01:35:57 AM +07 2025
+Job ID: 30501
+GPU: 0
+=== Running KKATIZ model training (proven for Thai government plates) ===
+=== Kkatiz training completed at Tue Oct  7 01:36:05 AM +07 2025 ===
+=== Running evaluation ===
+=== All completed at Tue Oct  7 01:36:19 AM +07 2025 ===

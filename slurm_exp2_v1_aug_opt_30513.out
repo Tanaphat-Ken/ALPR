@@ -1,0 +1,7 @@
+Starting optimized exp2_v1_aug training at Tue Oct  7 04:15:26 AM +07 2025
+Job ID: 30513
+GPU: 0
+Python 3.10.12
+PyTorch: 2.5.1+cu121, CUDA: False
+Transformers: 4.57.0
+=== Running EXP2 V1 AUG with optimized settings ===

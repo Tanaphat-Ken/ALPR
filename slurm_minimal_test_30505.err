@@ -1,0 +1,69 @@
+2025-10-07 02:02:32,698 - INFO - train_trocr - Loading records from data/8000/8000.csv
+2025-10-07 02:04:38,493 - INFO - train.data_utils - Loaded 8172 records (require_validate=True, drop_missing=True)
+2025-10-07 02:04:38,494 - INFO - train_trocr - Creating stratified splits (train=0.70, val=0.20, test=0.10)
+2025-10-07 02:04:38,501 - INFO - train.data_utils - Split 'train': 5589 samples
+2025-10-07 02:04:38,501 - INFO - train.data_utils - Split 'val': 1536 samples
+2025-10-07 02:04:38,501 - INFO - train.data_utils - Split 'test': 1047 samples
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+2025-10-07 02:04:43,784 - INFO - train_trocr - Added 77 province tokens to tokenizer
+2025-10-07 02:04:45,678 - INFO - train_trocr - Resizing fresh model decoder embeddings from 25005 to 25082 tokens (tokenizer len: 25081, max_id: 25081)
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+2025-10-07 02:04:46,342 - WARNING - train_trocr - Vocab size mismatch: tokenizer=25081, model=25082
+2025-10-07 02:04:46,496 - INFO - train_trocr - Resized decoder embeddings to 25081 tokens
+/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/cuda/__init__.py:129: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 802: system not yet initialized (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py:1153: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `VisionSeq2SeqTrainer.__init__`. Use `processing_class` instead.
+  trainer = VisionSeq2SeqTrainer(
+2025-10-07 02:04:46,594 - INFO - train_trocr - Starting training: 100 train samples, 20 val samples
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': 5}.
+  0%|          | 0/13 [00:00<?, ?it/s]Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+2025-10-07 02:04:47,943 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+`loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+  8%|▊         | 1/13 [00:32<06:28, 32.35s/it]2025-10-07 02:05:19,561 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 15%|█▌        | 2/13 [00:58<05:13, 28.51s/it]2025-10-07 02:05:45,362 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 23%|██▎       | 3/13 [01:23<04:30, 27.09s/it]2025-10-07 02:06:10,855 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 31%|███       | 4/13 [01:48<03:57, 26.43s/it]2025-10-07 02:06:36,202 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+We strongly recommend passing in an `attention_mask` since your input_ids may be padded. See https://huggingface.co/docs/transformers/troubleshooting#incorrect-output-when-padding-tokens-arent-masked.
+ 38%|███▊      | 5/13 [02:14<03:27, 26.00s/it]                                               38%|███▊      | 5/13 [02:14<03:27, 26.00s/it]2025-10-07 02:07:01,406 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 46%|████▌     | 6/13 [02:39<03:00, 25.78s/it]2025-10-07 02:07:26,764 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 54%|█████▍    | 7/13 [03:05<02:34, 25.67s/it]2025-10-07 02:07:52,217 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 62%|██████▏   | 8/13 [03:30<02:07, 25.48s/it]2025-10-07 02:08:17,291 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 69%|██████▉   | 9/13 [03:55<01:41, 25.45s/it]2025-10-07 02:08:42,680 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 77%|███████▋  | 10/13 [04:20<01:16, 25.39s/it]                                                77%|███████▋  | 10/13 [04:20<01:16, 25.39s/it]2025-10-07 02:09:07,936 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 85%|████████▍ | 11/13 [04:46<00:50, 25.37s/it]2025-10-07 02:09:33,051 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+ 92%|█████████▏| 12/13 [05:11<00:25, 25.25s/it]2025-10-07 02:09:57,820 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+100%|██████████| 13/13 [05:23<00:00, 21.51s/it]2025-10-07 02:10:11,612 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:10:11,615 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+
+  0%|          | 0/3 [00:00<?, ?it/s][A2025-10-07 02:10:19,790 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:10:19,790 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+
+ 67%|██████▋   | 2/3 [00:08<00:04,  4.08s/it][A2025-10-07 02:10:27,747 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:10:27,747 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+
+100%|██████████| 3/3 [00:12<00:00,  4.10s/it][A                                               
+                                             [A100%|██████████| 13/13 [05:45<00:00, 21.51s/it]
+100%|██████████| 3/3 [00:12<00:00,  4.10s/it][A
+                                             [A/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/transformers/modeling_utils.py:3922: UserWarning: Moving the following attributes in the config to the generation config: {'max_length': 32, 'early_stopping': True, 'no_repeat_ngram_size': 2}. You are seeing this warning because you've set generation parameters in the model config, as opposed to in the generation config.
+  warnings.warn(
+There were missing keys in the checkpoint model loaded: ['decoder.lm_head.decoder.weight', 'decoder.lm_head.decoder.bias'].
+                                               100%|██████████| 13/13 [05:51<00:00, 21.51s/it]100%|██████████| 13/13 [05:51<00:00, 27.00s/it]
+2025-10-07 02:10:39,165 - INFO - train_trocr - Evaluating on validation set
+2025-10-07 02:10:40,687 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:10:40,688 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+  0%|          | 0/3 [00:00<?, ?it/s]2025-10-07 02:11:17,324 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:11:17,329 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+ 67%|██████▋   | 2/3 [00:08<00:04,  4.15s/it]2025-10-07 02:11:25,317 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:11:25,317 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+100%|██████████| 3/3 [00:12<00:00,  4.13s/it]100%|██████████| 3/3 [00:12<00:00,  4.15s/it]
+2025-10-07 02:11:29,467 - INFO - train_trocr - Saved metrics to outputs/test_minimal/val_metrics.json
+2025-10-07 02:11:29,467 - INFO - train_trocr - Evaluating on test set
+2025-10-07 02:11:30,318 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:11:30,319 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+  0%|          | 0/3 [00:00<?, ?it/s]2025-10-07 02:11:38,896 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:11:38,897 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+ 67%|██████▋   | 2/3 [00:08<00:04,  4.31s/it]2025-10-07 02:11:47,219 - INFO - train_trocr - VisionSeq2SeqTrainer dropping extra inputs during pred: ['labels']
+2025-10-07 02:11:47,220 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (pred): ['pixel_values', 'labels']
+100%|██████████| 3/3 [00:13<00:00,  4.49s/it]100%|██████████| 3/3 [00:13<00:00,  4.48s/it]
+2025-10-07 02:11:52,039 - INFO - train_trocr - Saved metrics to outputs/test_minimal/test_metrics.json
+2025-10-07 02:11:52,040 - INFO - train_trocr - All done. Checkpoints saved to outputs/test_minimal

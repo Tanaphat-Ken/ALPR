@@ -14,8 +14,6 @@ ALPR/
 
 # Logs
 *.log
-slurm_*.out
-slurm_*.err
 
 # Mac / misc
 .DS_Store

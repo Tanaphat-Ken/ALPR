@@ -1,0 +1,28 @@
+GPU Information for minimal test:
+Tue Oct  7 02:01:49 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  | 00000000:4E:00.0 Off |                    0 |
+| N/A   23C    P0              46W / 400W |      0MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+CUDA_VISIBLE_DEVICES: 0
+Starting minimal test at Tue Oct  7 02:01:49 AM +07 2025
+{'loss': 15.9996, 'grad_norm': 78.0428466796875, 'learning_rate': 4.0000000000000003e-07, 'epoch': 0.38}
+{'loss': 15.3782, 'grad_norm': 97.25672912597656, 'learning_rate': 9e-07, 'epoch': 0.77}
+{'eval_loss': 14.9513521194458, 'eval_cer': 1.0, 'eval_exact_match': 0.0, 'eval_plate_cer': 1.0, 'eval_plate_exact_match': 0.0, 'eval_province_cer': 42.15, 'eval_province_exact_match': 0.55, 'eval_runtime': 21.1898, 'eval_samples_per_second': 0.944, 'eval_steps_per_second': 0.142, 'epoch': 1.0}
+{'train_runtime': 351.0076, 'train_samples_per_second': 0.285, 'train_steps_per_second': 0.037, 'train_loss': 15.335147857666016, 'epoch': 1.0}
+Minimal test completed at Tue Oct  7 02:12:02 AM +07 2025

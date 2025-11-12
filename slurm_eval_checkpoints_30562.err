@@ -1,0 +1,12 @@
+2025-10-07 16:10:08,618 - INFO - Found 2 checkpoints
+/home/tsomboo/ALPR/plate_recognizer/train/eval_checkpoints.py:70: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  training_args = torch.load(training_args_file, map_location="cpu")
+2025-10-07 16:10:12,042 - INFO - Loaded training arguments from training_args.bin
+2025-10-07 16:10:12,043 - INFO - Evaluating checkpoint: checkpoint-2000
+2025-10-07 16:10:12,043 - INFO - Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --model-path outputs/grid/exp4_kkatiz_aug/checkpoint-2000 --split test --num-beams 4 --batch-size 8 --csv data/8000/8000.csv --data-root data/8000 --save-results outputs/grid/exp4_kkatiz_aug/checkpoint-2000/eval_test.json
+2025-10-07 16:12:42,095 - INFO - ✓ Successfully evaluated checkpoint-2000
+2025-10-07 16:12:42,096 - INFO - Evaluating checkpoint: checkpoint-3495
+2025-10-07 16:12:42,096 - INFO - Running: /home/tsomboo/ALPR/plate_recognizer/.venv_linux/bin/python /home/tsomboo/ALPR/plate_recognizer/train/eval_trocr.py --model-path outputs/grid/exp4_kkatiz_aug/checkpoint-3495 --split test --num-beams 4 --batch-size 8 --csv data/8000/8000.csv --data-root data/8000 --save-results outputs/grid/exp4_kkatiz_aug/checkpoint-3495/eval_test.json
+2025-10-07 16:15:01,599 - INFO - ✓ Successfully evaluated checkpoint-3495
+2025-10-07 16:15:01,599 - INFO - Evaluation complete: 2 successful, 0 failed
+2025-10-07 16:15:01,613 - INFO - Saved evaluation summary to outputs/grid/exp4_kkatiz_aug/checkpoint_evaluations_test.json

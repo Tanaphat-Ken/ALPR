@@ -1,0 +1,53 @@
+2025-10-06 23:49:10,879 - INFO - train_trocr - Loading records from data/8000/8000.csv
+2025-10-06 23:50:02,524 - INFO - train.data_utils - Loaded 8172 records (require_validate=True, drop_missing=True)
+2025-10-06 23:50:02,525 - INFO - train_trocr - Creating stratified splits (train=0.70, val=0.20, test=0.10)
+2025-10-06 23:50:02,536 - INFO - train.data_utils - Split 'train': 5589 samples
+2025-10-06 23:50:02,537 - INFO - train.data_utils - Split 'val': 1536 samples
+2025-10-06 23:50:02,537 - INFO - train.data_utils - Split 'test': 1047 samples
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+2025-10-06 23:50:05,863 - INFO - train_trocr - Added 77 province tokens to tokenizer
+2025-10-06 23:50:05,863 - INFO - train_trocr - Loading openthaigpt/thai-trocr and applying state_dict from models/weights/charactor_reader.pth
+/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py:713: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(source_path, map_location="cpu")
+2025-10-06 23:50:07,731 - INFO - train_trocr - Vocab size mismatch: state_dict=25005, current_model=25005, required=25082
+2025-10-06 23:50:07,826 - INFO - train_trocr - Resizing model decoder embeddings from 25005 to 25082 tokens after partial state_dict load
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+2025-10-06 23:50:07,864 - INFO - train_trocr - Copying 25005 original embeddings to resized model
+2025-10-06 23:50:07,881 - INFO - train_trocr - Resized decoder embeddings to 25082 tokens
+/home/tsomboo/ALPR/plate_recognizer/.venv_linux/lib/python3.10/site-packages/torch/cuda/__init__.py:129: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 802: system not yet initialized (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+/home/tsomboo/ALPR/plate_recognizer/train/train_trocr.py:1153: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `VisionSeq2SeqTrainer.__init__`. Use `processing_class` instead.
+  trainer = VisionSeq2SeqTrainer(
+2025-10-06 23:50:07,985 - INFO - train_trocr - Starting training: 5589 train samples, 1536 val samples
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': 5}.
+  0%|          | 0/1050 [00:00<?, ?it/s]2025-10-06 23:50:17,695 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+`loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+  0%|          | 1/1050 [00:59<17:14:45, 59.19s/it]2025-10-06 23:51:07,366 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  0%|          | 2/1050 [01:34<13:07:06, 45.06s/it]2025-10-06 23:51:42,543 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  0%|          | 3/1050 [02:07<11:27:33, 39.40s/it]2025-10-06 23:52:15,203 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  0%|          | 4/1050 [02:42<10:56:48, 37.68s/it]2025-10-06 23:52:50,233 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  0%|          | 5/1050 [03:16<10:38:33, 36.66s/it]2025-10-06 23:53:25,102 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 6/1050 [03:53<10:36:02, 36.55s/it]2025-10-06 23:54:01,444 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 7/1050 [04:26<10:17:28, 35.52s/it]2025-10-06 23:54:34,837 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 8/1050 [04:59<10:01:11, 34.62s/it]2025-10-06 23:55:07,521 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 9/1050 [05:31<9:47:53, 33.88s/it] 2025-10-06 23:55:39,792 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 10/1050 [06:07<10:00:29, 34.64s/it]2025-10-06 23:56:16,136 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 11/1050 [06:43<10:02:03, 34.77s/it]2025-10-06 23:56:51,185 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 12/1050 [07:17<9:57:38, 34.55s/it] 2025-10-06 23:57:25,227 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|          | 13/1050 [07:49<9:46:22, 33.93s/it]2025-10-06 23:57:57,727 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|▏         | 14/1050 [08:23<9:44:49, 33.87s/it]2025-10-06 23:58:31,465 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  1%|▏         | 15/1050 [08:58<9:52:27, 34.35s/it]2025-10-06 23:59:06,913 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 16/1050 [09:31<9:42:23, 33.79s/it]2025-10-06 23:59:39,427 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 17/1050 [10:04<9:40:20, 33.71s/it]2025-10-07 00:00:12,936 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 18/1050 [10:41<9:57:22, 34.73s/it]2025-10-07 00:00:50,048 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 19/1050 [11:14<9:43:42, 33.97s/it]2025-10-07 00:01:22,241 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 20/1050 [11:48<9:47:28, 34.22s/it]                                                     2%|▏         | 20/1050 [11:48<9:47:28, 34.22s/it]2025-10-07 00:01:57,060 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 21/1050 [12:25<9:59:05, 34.93s/it]2025-10-07 00:02:33,647 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 22/1050 [12:59<9:52:51, 34.60s/it]2025-10-07 00:03:07,476 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 23/1050 [13:30<9:37:18, 33.73s/it]2025-10-07 00:03:39,163 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 24/1050 [14:05<9:41:42, 34.02s/it]2025-10-07 00:04:13,858 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 25/1050 [14:39<9:42:03, 34.07s/it]2025-10-07 00:04:48,054 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  2%|▏         | 26/1050 [15:13<9:39:13, 33.94s/it]2025-10-07 00:05:21,683 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  3%|▎         | 27/1050 [15:46<9:34:22, 33.69s/it]2025-10-07 00:05:54,784 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+  3%|▎         | 28/1050 [16:19<9:30:52, 33.51s/it]2025-10-07 00:06:27,896 - INFO - train_trocr - VisionSeq2SeqTrainer model kwargs (loss): ['pixel_values', 'labels']
+slurmstepd: error: *** JOB 30466 ON prism-1 CANCELLED AT 2025-10-07T00:06:55 ***
