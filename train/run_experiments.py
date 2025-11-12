@@ -226,13 +226,14 @@ def parse_args() -> argparse.Namespace:
         default=0,
         help="PyTorch DataLoader workers for train/eval (0 is Windows-safe; raise on Linux).",
     )
-    parser.add_argument("--eval-strategy", choices=["no", "steps", "epoch"], default="steps", help="Evaluation strategy.")
-    parser.add_argument("--save-strategy", choices=["no", "steps", "epoch"], default="steps", help="Save strategy.")
     parser.add_argument("--eval-normalize-text", action="store_true")
     parser.add_argument("--skip-existing", action="store_true", help="Skip training if output dir already has weights.")
     parser.add_argument("--dry-run", action="store_true", help="Print commands without executing them.")
     parser.add_argument("--continue-on-error", action="store_true", help="Keep going even if a command fails.")
     parser.add_argument("--cpu-only", action="store_true", help="Force CPU training to avoid CUDA errors.")
+    parser.add_argument("--eval-only-at-end", action="store_true", help="Skip validation during training for speed (eval only at end).")
+    parser.add_argument("--eval-batch-size-reduction", type=int, default=2, help="Reduce eval batch size by this factor for speed.")
+    parser.add_argument("--eval-every-epoch", action="store_true", help="Run evaluation at the end of every epoch instead of steps")
     return parser.parse_args()
 
 
@@ -285,12 +286,6 @@ def main() -> None:
         train_common.extend(["--data-root", root])
 
     train_common.extend(["--num-workers", str(args.num_workers)])
-    
-    # Add evaluation strategy arguments
-    if hasattr(args, 'eval_strategy') and args.eval_strategy:
-        train_common.extend(["--eval-strategy", args.eval_strategy])
-    if hasattr(args, 'save_strategy') and args.save_strategy:
-        train_common.extend(["--save-strategy", args.save_strategy])
 
     if args.max_train_samples is not None:
         train_common.extend(["--max-train-samples", str(args.max_train_samples)])
@@ -298,6 +293,12 @@ def main() -> None:
         train_common.extend(["--max-eval-samples", str(args.max_eval_samples)])
     if args.cpu_only:
         train_common.extend(["--no-cuda"])
+    if args.eval_only_at_end:
+        train_common.extend(["--eval-only-at-end"])
+    if args.eval_batch_size_reduction > 1:
+        train_common.extend(["--eval-batch-size-reduction", str(args.eval_batch_size_reduction)])
+    if args.eval_every_epoch:
+        train_common.extend(["--eval-every-epoch"]) 
 
     eval_common: List[str] = [
         "--csv",

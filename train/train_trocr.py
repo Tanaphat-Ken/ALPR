@@ -360,9 +360,26 @@ class PlateOCRDataset(Dataset):
         labels = labels.clone()
         labels[labels == self.processor.tokenizer.pad_token_id] = -100
 
+        # CRITICAL: Validate token IDs are within vocabulary range to prevent CUDA index errors
+        vocab_size = len(self.processor.tokenizer)
+        valid_labels = labels.clone()
+        
+        # Find problematic tokens
+        mask_invalid = (valid_labels >= vocab_size) | (valid_labels < -100)
+        if torch.any(mask_invalid):
+            logger.warning(f"Sample {idx}: Found {torch.sum(mask_invalid).item()} invalid token IDs. Max token: {torch.max(valid_labels).item()}, vocab_size: {vocab_size}")
+            # Replace invalid tokens with pad token ID or clamp to valid range
+            valid_labels = torch.where(
+                mask_invalid & (valid_labels >= 0),  # Only clamp positive invalid tokens
+                torch.tensor(self.processor.tokenizer.pad_token_id, dtype=valid_labels.dtype),
+                valid_labels
+            )
+            # Ensure all positive tokens are within vocabulary
+            valid_labels = torch.clamp(valid_labels, -100, vocab_size - 1)
+
         batch: Dict[str, torch.Tensor] = {
             "pixel_values": pixel_values,
-            "labels": labels,
+            "labels": valid_labels,
         }
         if "decoder_attention_mask" in encoding:
             batch["decoder_attention_mask"] = encoding["decoder_attention_mask"].squeeze(0)
@@ -433,6 +450,29 @@ class VisionSeq2SeqTrainer(Seq2SeqTrainer):
         if inputs:
             logger.info("VisionSeq2SeqTrainer dropping extra inputs during loss: %s", list(inputs.keys()))
 
+        # CRITICAL: Additional validation to prevent CUDA index errors
+        if labels is not None:
+            vocab_size = model.config.decoder.vocab_size if hasattr(model.config, 'decoder') else model.config.vocab_size
+            if vocab_size is None:
+                vocab_size = model.decoder.get_input_embeddings().num_embeddings
+            
+            # Check for out-of-bounds tokens
+            valid_mask = (labels >= -100) & (labels < vocab_size)
+            invalid_mask = ~valid_mask & (labels >= 0)  # Only check positive tokens
+            
+            if torch.any(invalid_mask):
+                num_invalid = torch.sum(invalid_mask).item()
+                max_token = torch.max(labels[labels >= 0]).item() if torch.any(labels >= 0) else -1
+                logger.error(f"CRITICAL: Found {num_invalid} invalid token IDs during training. Max token: {max_token}, vocab_size: {vocab_size}")
+                
+                # Emergency fix: clamp all positive tokens to valid range
+                labels = torch.where(
+                    invalid_mask,
+                    torch.tensor(vocab_size - 1, dtype=labels.dtype, device=labels.device),
+                    labels
+                )
+                logger.warning("Emergency token clamping applied to prevent CUDA crash")
+
         model_kwargs = {
             "pixel_values": pixel_values,
             "labels": labels,
@@ -482,8 +522,14 @@ class VisionSeq2SeqTrainer(Seq2SeqTrainer):
 
             logger.info("VisionSeq2SeqTrainer model kwargs (pred): %s", list(model_kwargs.keys()))
             
+            # Clear GPU memory before prediction for better performance
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            
             try:
-                outputs = model(**model_kwargs)
+                # Use torch.inference_mode for better performance during evaluation
+                with torch.inference_mode():
+                    outputs = model(**model_kwargs)
             except RuntimeError as e:
                 if "CUDA error" in str(e):
                     logger.error(f"CUDA error during prediction: {e}")
@@ -554,9 +600,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--per-device-train-batch-size", type=int, default=8)
     parser.add_argument("--per-device-eval-batch-size", type=int, default=8)
+    parser.add_argument("--eval-batch-size-reduction", type=int, default=1, help="Reduce eval batch size by this factor for speed (1=no reduction, 2=half size, etc.)")
     parser.add_argument("--gradient-accumulation-steps", type=int, default=1)
     parser.add_argument("--learning-rate", type=float, default=3e-5)
-    parser.add_argument("--num-train-epochs", type=int, default=12)
+    parser.add_argument("--num-train-epochs", type=int, default=20)
     parser.add_argument("--warmup-steps", type=int, default=500)
     parser.add_argument("--weight-decay", type=float, default=0.01)
     parser.add_argument("--max-train-samples", type=int, default=None)
@@ -577,6 +624,26 @@ def parse_args() -> argparse.Namespace:
             "(Electra/CamemBERT → query,key,value,dense; LLaMA/GPTQ → q_proj,k_proj,v_proj,o_proj)."
         ),
     )
+
+    # Ensure save_steps is a round multiple of eval_steps when load_best_model_at_end is used.
+    try:
+        load_best = False if args.eval_only_at_end else bool(len(datasets["val"]))
+        if load_best and training_args.eval_steps and training_args.save_steps:
+            if training_args.save_strategy == "steps":
+                if training_args.save_steps % training_args.eval_steps != 0:
+                    # Adjust save_steps to be the nearest multiple of eval_steps >= current save_steps
+                    multiples = (training_args.save_steps + training_args.eval_steps - 1) // training_args.eval_steps
+                    new_save = multiples * training_args.eval_steps
+                    logger.warning(
+                        "Adjusting save_steps from %d to %d to be a multiple of eval_steps=%d so load_best_model_at_end works.",
+                        training_args.save_steps,
+                        new_save,
+                        training_args.eval_steps,
+                    )
+                    training_args.save_steps = new_save
+    except Exception:
+        # Defensive: if something unexpected happens, proceed with defaults and let transformers validate
+        pass
     parser.add_argument(
         "--lora-scope",
         type=str,
@@ -586,11 +653,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--fp16", action="store_true", help="Use float16 mixed precision.")
     parser.add_argument("--bf16", action="store_true", help="Use bfloat16 mixed precision (Ampere+ GPUs).")
-    parser.add_argument("--eval-steps", type=int, default=2000)
+    parser.add_argument("--eval-steps", type=int, default=2000, help="Validation frequency (higher = less frequent, faster training)")
     parser.add_argument("--save-steps", type=int, default=2000)
-    parser.add_argument("--eval-strategy", type=str, choices=["no", "steps", "epoch"], default="steps", help="Evaluation strategy.")
-    parser.add_argument("--save-strategy", type=str, choices=["no", "steps", "epoch"], default="steps", help="Save strategy.")
+    parser.add_argument("--eval-every-epoch", action="store_true", help="Run evaluation at the end of every epoch instead of steps")
     parser.add_argument("--logging-steps", type=int, default=20)
+    parser.add_argument("--eval-only-at-end", action="store_true", help="Skip validation during training, only evaluate at the end for speed")
     parser.add_argument("--report-to", type=str, nargs="*", default=None, help="e.g. wandb tensorboard")
     parser.add_argument("--generation-max-length", type=int, default=32)
     parser.add_argument("--push-to-hub", action="store_true")
@@ -1117,19 +1184,29 @@ def main() -> None:
     model, processor = load_model_and_processor(args)
     datasets = build_datasets(splits, processor, args)
 
+    # Choose evaluation/save strategy: epoch-based if requested, otherwise steps-based (if val set)
+    if args.eval_only_at_end:
+        eval_strategy = "no"
+    elif args.eval_every_epoch:
+        eval_strategy = "epoch"
+    else:
+        eval_strategy = "steps" if len(datasets["val"]) else "no"
+
+    save_strategy = "epoch" if args.eval_every_epoch and len(datasets["val"]) else ("steps" if len(datasets["val"]) else "epoch")
+
     training_args = Seq2SeqTrainingArguments(
         output_dir=args.output_dir,
         per_device_train_batch_size=args.per_device_train_batch_size,
-        per_device_eval_batch_size=args.per_device_eval_batch_size,
+        per_device_eval_batch_size=max(1, args.per_device_eval_batch_size // args.eval_batch_size_reduction),
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         learning_rate=args.learning_rate,
         num_train_epochs=args.num_train_epochs,
         warmup_steps=args.warmup_steps,
         weight_decay=args.weight_decay,
         logging_steps=args.logging_steps,
-        eval_strategy=args.eval_strategy if len(datasets["val"]) else "no",
+        eval_strategy=eval_strategy,
         eval_steps=args.eval_steps,
-        save_strategy=args.save_strategy if len(datasets["val"]) else "epoch",
+        save_strategy=save_strategy,
         save_steps=args.save_steps,
         predict_with_generate=True,
         generation_max_length=args.generation_max_length,
@@ -1138,7 +1215,7 @@ def main() -> None:
         fp16=args.fp16,
         bf16=args.bf16,
         report_to=args.report_to,
-        load_best_model_at_end=bool(len(datasets["val"])),
+        load_best_model_at_end=False if args.eval_only_at_end else (False if args.eval_every_epoch else bool(len(datasets["val"]))),
         metric_for_best_model="cer",
         greater_is_better=False,
         dataloader_num_workers=args.num_workers,

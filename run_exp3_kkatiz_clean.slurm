@@ -26,9 +26,9 @@ python train/run_experiments.py \
     --csv data/8000/8000.csv \
     --data-root data/8000 \
     --output-root outputs/grid \
-    --num-workers 4 \
-    --per-device-eval-batch-size 48 \
-    --per-device-train-batch-size 48 \
+    --num-workers 2 \
+    --per-device-eval-batch-size 32 \
+    --per-device-train-batch-size 32 \
     --learning-rate 3e-5 \
     --num-train-epochs 6 \
     --eval-strategy epoch \
