@@ -11,6 +11,8 @@ data/
 outputs/
 models/
 ALPR/
+yolo_dataset/
+yolo_lp_dataset/
 
 # Logs
 *.log
