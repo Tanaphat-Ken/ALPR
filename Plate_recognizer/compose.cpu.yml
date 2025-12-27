@@ -1,0 +1,17 @@
+services:
+  plate-recognizer:
+    build:
+      context: .
+      dockerfile: Dockerfile.cpu
+
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/usr/src/app
+    restart: always
+    networks: 
+      - alpr-network
+
+networks:
+  alpr-network:
+    external: true

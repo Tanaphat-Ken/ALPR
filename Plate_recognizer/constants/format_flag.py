@@ -1,0 +1,2 @@
+COMPLETE = "complete"
+WARNING = "warning"
