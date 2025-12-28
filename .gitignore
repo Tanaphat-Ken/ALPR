@@ -13,6 +13,8 @@ models/
 ALPR/
 yolo_dataset/
 yolo_lp_dataset/
+yolo_lp_dataset.zip
+runs/
 
 # Logs
 *.log
