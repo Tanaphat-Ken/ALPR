@@ -14,7 +14,6 @@ ALPR/
 yolo_dataset/
 yolo_lp_dataset/
 yolo_lp_dataset.zip
-runs/
 yolo_splitter_dataset/
 yolo_splitter_dataset.zip
 
