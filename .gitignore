@@ -16,6 +16,7 @@ yolo_lp_dataset/
 yolo_lp_dataset.zip
 yolo_splitter_dataset/
 yolo_splitter_dataset.zip
+province_only_synth/
 
 # Logs
 *.log
